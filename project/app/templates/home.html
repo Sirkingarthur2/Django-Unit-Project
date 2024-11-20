@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-AU">
+
+<head>
+  <title>Home</title>
+  <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+  <meta name="author" content="fullahead.org" />
+  <meta name="keywords" content="Open Web Design, OWD, Free Web Template, Lazy Days, Fullahead" />
+  <meta name="description" content="A free web template designed by Fullahead.org and hosted on OpenWebDesign.org" />
+  <meta name="robots" content="index, follow, noarchive" />
+  <meta name="googlebot" content="noarchive" />
+
+  <!-- Load CSS files using Django's static template tag -->
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/html.css' %}" media="screen, projection, tv" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}" media="screen, projection, tv" />
+</head>
+<body>
+
+<!-- CONTENT: Holds all site content except for the footer. This is what causes the footer to stick to the bottom -->
+<div id="content">
+
+  <!-- HEADER: Holds title, subtitle and header images -->
+  <div id="header">
+    <img src="{% static 'images/bg/basecamp_logo.png' %}" alt="" class="logo">\
+  </div>
+
+  <!-- MAIN MENU: Top horizontal menu of the site. Use class="here" to turn the current page tab on -->
+  <div id="mainMenu">
+    <ul class="floatRight">
+      <li><a href="{% url 'home' %}" class="here">About</a></li>
+      <li><a href="{% url 'blog' %}">Blog</a></li>     
+      <li><a href="{% url 'recipes' %}">Recipes</a></li>
+      <li><a href="{% url 'add-recipe' %}">Recommend Recipe</a></li>
+    </ul>
+  </div>
+
+  {% comment %} Attempt at a login button {% endcomment %}
+  {% comment %} <div class="login-button-container" style="text-align: center; margin-top: 20px;">
+    <a href="{% url 'login' %}" class="login-button"><button>Login</button></a>
+  </div> {% endcomment %}
+  
+  <!-- PAGE CONTENT BEGINS: This is where you would define the columns (number, width and alignment) -->
+  <div id="page">
+
+    <!-- 25 percent width column, aligned to the left -->
+    <div class="width25 floatLeft leftColumn">
+      <h1>Introducing</h1>
+      <ul class="sideMenu">
+        <li class="here" style="font-size: 14.5pt;">Procurement Team</li>
+      </ul>
+      <p style="font-size: 10.5pt;">The procurement team at Basecamp Coding Academy is responsible for managing budgets to provide meals and essential supplies, such as soap and toilet paper. Our duties include researching and comparing prices from various suppliers and planning cost-effective menus. Occasionally, we also prepare the meals ourselves. In addition to meal planning, we are tasked with procuring various necessary products, like hand soap and T.P. but not limited to hygiene items.</p>
+    </div>
+
+    <!-- 75 percent width column, aligned to the right -->
+    <div class="width75 floatRight">
+      <div class="gradient">
+        <h3 style="color: #00316E; font-weight: bolder; font-size: 16pt;">Website Intro</h3>
+        <p style="font-size: 12pt;">&ensp;&ensp;&ensp;&ensp;&ensp;Welcome to my website, designed to streamline everything procurement. On the Home section, you'll find a guide on how to navigate and utilize the site. This section provides an overview of all the main areas, ensuring that users can easily find the information they need and understand how to interact with the different features available.</p>
+        <h3 style="color: #00316E; font-weight: bolder; font-size: 16pt;">Blog Posts</h3>
+        <p style="font-size: 12pt;">&ensp;&ensp;&ensp;&ensp;&ensp;In the Blog section, Procurement posts updates and insights about our procurement activities. This area serves as a repository for all procurement-related news and other relevant information. It's an excellent resource for staying informed about the behind-the-scenes work.</p>
+        <h3 style="color: #00316E; font-weight: bolder; font-size: 16pt;">Recipe Viewer</h3>
+        <p style="font-size: 12pt;">&ensp;&ensp;&ensp;&ensp;&ensp;The Recipe section is a dedicated space where procurement stores and shares the team's recipes. Here, you'll find a variety of our meal ideas that have been tried by our team. These recipes are designed to be cost-effective and easy.</p>
+        <h3 style="color: #00316E; font-weight: bolder; font-size: 16pt;">Recommend a Recipe</h3>
+        <p style="font-size: 12pt;">&ensp;&ensp;&ensp;&ensp;&ensp;Finally, the Recommend Recipe area allows non-admin users to contribute their meal ideas. If you have a recipe that you think would be a great addition to our collection, this is the place to share it. By encouraging contributions from the school it ensures that we know what everyone likes.</p>
+        </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

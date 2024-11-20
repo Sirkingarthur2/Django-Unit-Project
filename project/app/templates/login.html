@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'login/style.css' %}">
+</head>
+<body>
+
+  <div class="login-wrapper">
+    <form action="{% url 'login' %}" method="POST" class="form">
+      {% csrf_token %}
+      <img src="{% static 'img/pizza.jpg' %}" alt="">
+      <h2>Login</h2>
+      {% if error %}
+        <p style="color:red;">{{ error }}</p>  <!-- Display error message -->
+      {% endif %}
+      <div class="input-group">
+        <input type="text" name="username" id="loginUser" autocomplete="off" required>
+        <label for="loginUser">User Name</label>
+      </div>
+      <div class="input-group">
+        <input type="password" name="password" id="loginPassword" required>
+        <label for="loginPassword">Password</label>
+      </div>
+      <input type="submit" value="Login" class="submit-btn">
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+/* 
+
+C:.
+└───project
+    ├───app
+    │   ├───migrations
+    │   │   └───__pycache__
+    │   ├───static
+    │   │   ├───css
+    │   │   ├───images
+    │   │   │   └───bg
+    │   │   ├───js
+    │   │   └───login
+    │   │       └───not_used
+    │   ├───templates
+    │   └───__pycache__
+    ├───blog_images
+    ├───media
+    │   └───blog
+    └───project
+        └───__pycache__
+
+*/

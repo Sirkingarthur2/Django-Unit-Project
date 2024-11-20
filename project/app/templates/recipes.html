@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-AU">
+
+<head>
+  <title>Recipes</title>
+  <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/html.css' %}" media="screen, projection, tv" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}" media="screen, projection, tv" />
+</head>
+
+<body class="recipe-body">
+<div id="content">
+  <div id="header">
+    <img src="{% static 'images/bg/basecamp_logo.png' %}" alt="" class="logo">
+  </div>
+
+  <div id="mainMenu">
+    <ul class="floatRight">
+      <li><a href="{% url 'home' %}">About</a></li>
+      <li><a href="{% url 'blog' %}">Blog</a></li>     
+      <li><a href="{% url 'recipes' %}" class="here">Recipes</a></li>
+      <li><a href="{% url 'add-recipe' %}">Recommend Recipe</a></li>
+    </ul>
+  </div>
+
+  <div id="page">
+      <div class="recipe-gradient">
+        <a name="customize"></a>
+        <h1>Recipes</h1>
+        {% for recipe in recipes %}
+          <div class="recipe">
+            <h2>{{ recipe.name }}</h2>
+            <div class="ingredients">
+              <h3>Ingredients:</h3>
+              <p>{{ recipe.ingredients }}</p>
+            </div>
+            <div class="instructions">
+              <h3>Instructions:</h3>
+              <p>{{ recipe.instructions }}</p>
+            </div>
+            <div class="cook-time">
+              <h3>Cook Time:</h3>
+              <p>{{ recipe.cook_time }} minutes</p>  <!-- Displaying cook time -->
+            </div>
+          </div>
+        {% empty %}
+          <p>No recipes available.</p>
+        {% endfor %}
+      </div>
+  </div>
+</div>
+
+</body>
+</html>

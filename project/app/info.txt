@@ -1,0 +1,51 @@
+# Install whoosh and django-haystack
+pip install whoosh django-haystack
+
+# settings.py
+INSTALLED_APPS = [
+    ...
+    'haystack',
+    ...
+]
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+
+# models.py
+from django.db import models
+
+class MyModel(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+
+# search_indexes.py
+from haystack import indexes
+from .models import MyModel
+
+class MyModelIndex(indexes.SearchIndex, indexes.Indexable):
+    text = indexes.CharField(document=True, use_template=True)
+    title = indexes.CharField(model_attr='title')
+    content = indexes.CharField(model_attr='content')
+
+    def get_model(self):
+        return MyModel
+
+    def index_queryset(self, using=None):
+        return self.get_model().objects.all()
+
+# templates/search/indexes/app_name/mymodel_text.txt
+{{ object.title }}
+{{ object.content }}
+
+# views.py
+from django.shortcuts import render
+from haystack.query import SearchQuerySet
+
+def search(request):
+    query = request.GET.get('q')
+    results = SearchQuerySet().filter(content=query)
+    return render(request, 'search_results.html', {'results': results})

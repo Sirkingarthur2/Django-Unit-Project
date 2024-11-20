@@ -1,0 +1,97 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-AU">
+
+<head>
+  <title>Blog</title>
+  <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+  <meta name="author" content="fullahead.org" />
+  <meta name="keywords" content="Open Web Design, OWD, Free Web Template, Lazy Days, Fullahead" />
+  <meta name="description" content="A free web template designed by Fullahead.org and hosted on OpenWebDesign.org" />
+  <meta name="robots" content="index, follow, noarchive" />
+  <meta name="googlebot" content="noarchive" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/html.css' %}" media="screen, projection, tv" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}" media="screen, projection, tv" />
+</head>
+
+<body>
+
+<!-- CONTENT: Holds all site content except for the footer. This is what causes the footer to stick to the bottom -->
+<div id="content">
+
+  <!-- HEADER: Holds title, subtitle and header images -->
+  <div id="header">
+    <img src="{% static 'images/bg/basecamp_logo.png' %}" alt="" class="logo">
+  </div>
+
+  <!-- MAIN MENU: Top horizontal menu of the site. Use class="here" to turn the current page tab on -->
+  <div id="mainMenu">
+    <ul class="floatRight">
+      <li><a href="{% url 'home' %}">About</a></li>
+      <li><a href="{% url 'blog' %}" class="here">Blog</a></li>     
+      <li><a href="{% url 'recipes' %}">Recipes</a></li>
+      <li><a href="{% url 'add-recipe' %}">Recommend Recipe</a></li>
+    </ul>
+  </div>
+
+  <!-- PAGE CONTENT BEGINS: This is where you would define the columns (number, width and alignment) -->
+  <div id="page">
+
+    <div class="width25 floatLeft leftColumn">
+
+      <ul class="sideMenu">
+
+        <h1>Blog Section</h1>
+
+          <li class="here">
+
+            <ul>
+              <li class="here" style="font-size: 14.5pt;">What is the blog section?</li>
+            </ul>
+
+          </li>
+
+          <p style="font-size: 10.5pt;">The Blog page is designed for the procurement team admin to share photos of our daily activities with captions. This space allows us to document and share moments from our day, providing a visual insight into our team's work and interactions. It's an easy way to keep everyone updated.</p>
+
+      </ul>
+
+    </div>
+
+    <div class="width75 floatRight">
+
+      <div class="blog-gradient">
+
+          <a name="customize"></a>
+
+          <h1>Blog Posts</h1>
+
+          <h2>View Procurements Blog Posts.</h2>
+
+          <div class="blog-posts-container">
+            {% for post in blog_posts %}
+              <div class="blog-post">
+                <div class="post-image">
+                  <img src="{{ post.image.url }}" alt="Blog Image" />
+                </div>
+                <div class="post-content">
+                  <h3>{{ post.title }}</h3>
+                  <p class="caption">{{ post.caption }}</p>
+                </div>
+              </div>
+            {% empty %}
+                <p>No blog posts available.</p>
+            {% endfor %}
+          </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+</body>
+</html>

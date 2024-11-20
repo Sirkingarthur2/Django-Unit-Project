@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Recipe</title>
+    <meta name="author" content="fullahead.org" />
+    <meta name="keywords" content="Open Web Design, OWD, Free Web Template, Lazy Days, Fullahead" />
+    <meta name="description" content="A free web template designed by Fullahead.org and hosted on OpenWebDesign.org" />
+    <meta name="robots" content="index, follow, noarchive" />
+    <meta name="googlebot" content="noarchive" />
+    {% load static %}
+    <!-- Ensure CSS files are correctly linked -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/html.css' %}" media="screen, projection, tv" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/layout.css' %}" media="screen, projection, tv" />
+</head>
+<body>
+
+<div id="content">
+    <div class="add-recipe-body">
+        <div id="header">
+            <img src="{% static 'images/bg/basecamp_logo.png' %}" alt="Logo" class="logo">
+        </div>
+
+        <div id="mainMenu">
+            <ul class="floatRight">
+                <li><a href="{% url 'home' %}">About</a></li>
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'recipes' %}">Recipes</a></li>
+                <li><a href="{% url 'add-recipe' %}" class="here">Recommend Recipe</a></li>
+            </ul>
+            
+        </div>
+
+        <div id="recipe-page">
+            <div class="gradient">
+                <dl>
+                    <dt class="make-big">Recommend a recipe!</dt>
+                    <dd class="center-recipes">
+                        Recommend any recipe by typing out: <br><br>
+                        Recipe name <br><br>
+                        Ingredients <br>
+                        1. ingredient <br>
+                        2. ingredient <br>
+                        3. ingredient <br><br>
+                        And the instructions <br>
+                        1. instruction <br>
+                        2. instruction <br>
+                        3. instruction<br>
+                    </dd>
+                </dl>
+
+                <form id="recipe-form" action="{% url 'add-recipe' %}" method="post">
+                    {% csrf_token %}
+                    <p class="center-recipes">
+                        <label for="recipe-name">Recipe Name</label>
+                        <input type="text" name="name" id="recipe-name" class="width50" required/>
+                    </p>
+
+                    <p class="center-recipes">
+                        <label for="ingredients">Ingredients</label>
+                        <textarea name="ingredients" id="ingredients" rows="5" cols="20" class="width50" required></textarea>
+                    </p>
+
+                    <p class="center-recipes">
+                        <label for="instructions">Instructions</label>
+                        <textarea name="instructions" id="instructions" rows="5" cols="20" class="width50" required></textarea>
+                    </p>
+
+                    <p class="center-recipes">
+                        <label for="cook-time">Cook Time (in minutes)</label>
+                        <input type="number" name="cook_time" id="cook-time" class="width50" required/>
+                    </p>
+
+                    <p class="recipe-buttons">
+                        <input type="submit" value="Submit" class="button"/>
+                        <input type="reset" value="Reset" class="button"/>
+                    </p>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
